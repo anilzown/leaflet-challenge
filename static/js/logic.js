@@ -41,22 +41,20 @@ d3.json(url).then(function(response) {
     // Set the data location property to a variable.
     
     var geometry = features[i].geometry;
+    var properties = features[i].properties;
     // console.log("setting geometry object to " + geometry);
 
     // Check for the location property.
     if (geometry) {
-        // console.log("in geometry");
-        // console.log("setting geometry object to " + geometry);
-        // Add a new marker to the cluster group, and bind a popup.
-        //   markers.addLayer(L.marker([location.coordinates[1], location.coordinates[0]])
-        //     .bindPopup(response[i].descriptor));
+        // console.log(properties);
+        title = properties.title;
+        // console.log(title);
         markers.addLayer(L.marker([geometry.coordinates[1], geometry.coordinates[0]])
-        .bindPopup(features[i].properties));
+        .bindPopup(title));
     }
+}
 
-  }
-
-  // Add our marker cluster layer to the map.
-  myMap.addLayer(markers);
+// Add our marker cluster layer to the map.
+myMap.addLayer(markers);
 
 });
